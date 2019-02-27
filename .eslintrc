@@ -16,9 +16,9 @@
   },
 
   "globals": {
-        "$": false
+    "$": false
   },
-  
+
   "extends": "eslint:recommended",
   "rules": {
     "indent": [2, 2],
