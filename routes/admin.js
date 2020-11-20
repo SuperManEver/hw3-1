@@ -3,7 +3,7 @@ const router = express.Router()
 
 router.get('/', (req, res, next) => {
   // TODO: Реализовать, подстановку в поля ввода формы 'Счетчики'
-  // актуальных значений из сохраненых
+  // актуальных значений из сохраненых (по желанию)
   res.render('pages/admin', { title: 'Admin page' })
 })
 
