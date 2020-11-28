@@ -49,8 +49,9 @@ POST запрос URL: `/`
 
 ```
     {
+      name,
       email,
-      password
+      message
     }
 ```
 
