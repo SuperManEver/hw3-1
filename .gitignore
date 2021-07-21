@@ -38,3 +38,6 @@ build
 # Node.JS
 node_modules
 npm-debug.log
+
+.env
+/public/upload/
