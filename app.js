@@ -3,6 +3,10 @@ const express = require('express')
 const path = require('path')
 const logger = require('morgan')
 
+const { PORT } = require('./config')
+const { initUploadDir } = require('./utils')
+const { DB } = require('./db')
+
 const mainRouter = require('./routes/')
 
 const app = express()
@@ -40,4 +44,26 @@ app.use((err, req, res, next) => {
   res.render('error')
 })
 
-app.listen(3000, () => {})
+try {
+  initUploadDir()
+} catch (_) {
+  console.error('Upload dir creation error!')
+}
+
+app.listen(PORT, async () => {
+  console.log(`server listening on PORT: ${PORT}`)
+
+  process.on('SIGTERM', onTerminationSignal)
+  process.on('SIGINT', onTerminationSignal)
+})
+
+function onTerminationSignal() {
+  try {
+    DB.close()
+    console.log('Shut down gracefully.')
+  } catch (err) {
+    console.log('Shut down gracefully...')
+  } finally {
+    process.exit(0)
+  }
+}
